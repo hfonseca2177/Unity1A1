@@ -1,22 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Game manager that receives and process the user spawn options
+ */
 public class GameManager : MonoBehaviour
 {
     
-    [Header("Cub prefab references")]
+    [Header("Cub prefab and variants references")]
     [SerializeField]
     private GameObject redCub;
     [SerializeField]
     private GameObject blueCub;
     [SerializeField]
     private GameObject greenCub;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,20 +20,20 @@ public class GameManager : MonoBehaviour
         //If press 1 spawn red cube
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InstantiateCube(this.redCub);
+            InstantiateCube(ref this.redCub);
         //If press 2 spawn blue cube
         }else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InstantiateCube(this.blueCub); 
+            InstantiateCube(ref this.blueCub); 
         //If press 3 spawn green cube    
         }else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InstantiateCube(this.greenCub);
+            InstantiateCube(ref this.greenCub);
         }
     }
-
-    private void InstantiateCube(GameObject cube)
+    //Instantiate the desired cube prefab
+    private void InstantiateCube(ref GameObject cube)
     {
-        Instantiate(cube, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(cube, new Vector3(0, 5, 0), Quaternion.identity);
     }
 }
