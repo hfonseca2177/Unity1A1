@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /*
  * Script to perform and grant movement for cubes
@@ -10,8 +11,9 @@ public class CubeMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     //a Vector to capture the coordinate changes
     private Vector3 _change;
+    [Header("Movement speed coefficient for cubes")]
     [SerializeField]
-    private float _speed;
+    private float speed;
     
     // Start is called before the first frame update
     private void Start()
@@ -25,7 +27,8 @@ public class CubeMovement : MonoBehaviour
     {
         //collect the user input for each axis
         _change.x = Input.GetAxisRaw("Horizontal");
-        _change.y = Input.GetAxisRaw("Vertical");
+        //using z axis instead of y axis to move over the platform
+        _change.z = Input.GetAxisRaw("Vertical");
         CalculateMovement();
     }
     
@@ -36,7 +39,7 @@ public class CubeMovement : MonoBehaviour
         //Checks if there was any movement
         if (_change.magnitude > 0)
         {
-            _rigidbody.MovePosition(transform.position + (_change * _speed * Time.deltaTime));    
+            _rigidbody.MovePosition(transform.position + (_change * speed * Time.deltaTime));    
         }
         
     }

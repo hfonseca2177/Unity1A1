@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     
+    [Header("Cub prefab references")]
     [SerializeField]
     private GameObject redCub;
     [SerializeField]
@@ -20,9 +21,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        //If press 1 spawn red cube
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InstantiateCube(this.redCub);
+        //If press 2 spawn blue cube
+        }else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            InstantiateCube(this.blueCub); 
+        //If press 3 spawn green cube    
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            InstantiateCube(this.greenCub);
         }
     }
 
